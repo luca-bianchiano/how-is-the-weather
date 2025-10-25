@@ -3,6 +3,7 @@
 ![Node.js](https://img.shields.io/badge/node-%3E%3D12-green)
 ![MIT License](https://img.shields.io/badge/license-MIT-blue)
 ![GitHub Repo](https://img.shields.io/badge/github-luca--bianchiano%2Fhow--is--the--weather-lightgrey)
+![Node.js CI](https://github.com/luca-bianchiano/how-is-the-weather/actions/workflows/test.yml/badge.svg)
 
 A simple Node.js utility that detects your current location and returns the current weather in **JSON format** using [wttr.in](https://wttr.in).  
 

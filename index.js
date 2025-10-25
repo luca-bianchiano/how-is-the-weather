@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-// dynamic import for node-fetch v3 (since it’s ESM-only)
-const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = (...args) => import("node-fetch").then(m => m.default(...args));
 
 async function getLocation() {
   const res = await fetch("http://ip-api.com/json/");
@@ -19,8 +18,11 @@ async function getWeather(city) {
 
 async function main() {
   try {
-    const argCity = process.argv[2];
-    const loc = argCity ? { city: argCity } : await getLocation();
+    const args = process.argv.slice(2);
+    const compact = args.includes("--compact");
+    const cityArg = args.find(arg => arg !== "--compact");
+
+    const loc = cityArg ? { city: cityArg } : await getLocation();
     const weatherData = await getWeather(loc.city);
 
     const current = weatherData.current_condition?.[0] || {};
@@ -45,7 +47,8 @@ async function main() {
       timestamp: new Date().toISOString()
     };
 
-    console.log(JSON.stringify(result, null, 2));
+    // Print compact or pretty JSON
+    console.log(JSON.stringify(result, null, compact ? 0 : 2));
   } catch (err) {
     console.error(JSON.stringify({ error: err.message }, null, 2));
     process.exit(1);

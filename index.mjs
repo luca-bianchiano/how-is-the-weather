@@ -17,8 +17,11 @@ export async function getWeather(city) {
 
 async function main() {
   try {
-    const argCity = process.argv[2];
-    const loc = argCity ? { city: argCity } : await getLocation();
+    const args = process.argv.slice(2);
+    const compact = args.includes("--compact");
+    const cityArg = args.find(arg => arg !== "--compact");
+
+    const loc = cityArg ? { city: cityArg } : await getLocation();
     const weatherData = await getWeather(loc.city);
 
     const current = weatherData.current_condition?.[0] || {};
@@ -43,11 +46,14 @@ async function main() {
       timestamp: new Date().toISOString()
     };
 
-    console.log(JSON.stringify(result, null, 2));
+    console.log(JSON.stringify(result, null, compact ? 0 : 2));
   } catch (err) {
     console.error(JSON.stringify({ error: err.message }, null, 2));
     process.exit(1);
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) main();
+// Run when executed directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main();
+}

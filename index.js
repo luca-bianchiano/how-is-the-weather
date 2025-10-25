@@ -1,6 +1,4 @@
-#!/usr/bin/env node
-
-const fetch = (...args) => import("node-fetch").then(m => m.default(...args));
+const fetch = require("node-fetch");
 
 async function getLocation() {
   const res = await fetch("http://ip-api.com/json/");

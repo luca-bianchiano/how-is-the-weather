@@ -10,6 +10,9 @@
   "bin": {
     "how-is-the-weather": "./index.js"
   },
+  "scripts": {
+    "test": "jest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luca-bianchiano/how-is-the-weather.git"
@@ -21,7 +24,10 @@
     "url": "https://github.com/luca-bianchiano/how-is-the-weather/issues"
   },
   "homepage": "https://github.com/luca-bianchiano/how-is-the-weather#readme",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  },
   "dependencies": {
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^2.7.0"
   }
 }

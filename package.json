@@ -1,0 +1,27 @@
+{
+  "name": "how-is-the-weather",
+  "version": "1.0.0",
+  "description": "A lightweight module getting the weather of the local area",
+  "main": "index.js",
+  "exports": {
+    "import": "./index.js",
+    "require": "./index.mjs"
+  },
+  "bin": {
+    "how-is-the-weather": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luca-bianchiano/how-is-the-weather.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luca-bianchiano/how-is-the-weather/issues"
+  },
+  "homepage": "https://github.com/luca-bianchiano/how-is-the-weather#readme",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
